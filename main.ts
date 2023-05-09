@@ -30,7 +30,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 info.onLifeZero(function () {
-    game.over(false, effects.dissolve)
+    game.over(false)
 })
 let projectile: Sprite = null
 let gapSprite: Sprite = null
