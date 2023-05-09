@@ -19,7 +19,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Gap, function (sprite, otherSpri
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
-    music.play(music.melodyPlayable(music.zapped), music.PlaybackMode.InBackground)
 })
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     if (game.ask("Toggle BGM (A)", "Cancel (B)")) {
@@ -31,7 +30,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 info.onLifeZero(function () {
-    game.over(false, effects.dissolve)
+    game.over(false)
 })
 let projectile: Sprite = null
 let gapSprite: Sprite = null
@@ -43,8 +42,6 @@ let bgm = 0
 let mySprite: Sprite = null
 info.setLife(3)
 game.setGameOverMessage(false, "Out of lives :(")
-game.setGameOverScoringType(game.ScoringType.HighScore)
-game.setGameOverPlayable(false, music.melodyPlayable(music.zapped), false)
 scene.setBackgroundColor(9)
 info.setScore(0)
 scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
