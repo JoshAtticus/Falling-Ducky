@@ -20,15 +20,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Gap, function (sprite, otherSpri
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
 })
-controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (game.ask("Toggle BGM (A)", "Cancel (B)")) {
-        if (bgm == 1) {
-            bgm = 0
-        } else {
-            bgm = 1
-        }
-    }
-})
 info.onLifeZero(function () {
     game.over(false)
 })
@@ -38,13 +29,12 @@ let gapImage: Image = null
 let bottomImage: Image = null
 let topImage: Image = null
 let gap = 0
-let bgm = 0
 let mySprite: Sprite = null
 info.setLife(3)
 game.setGameOverMessage(false, "Out of lives :(")
 scene.setBackgroundColor(9)
 info.setScore(0)
-scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
+scene.setBackgroundImage(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
@@ -166,7 +156,6 @@ scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     `)
-scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.OnlyHorizontal)
 game.splash("Welcome to Falling Ducky!", "Press (A) to start")
 mySprite = sprites.create(img`
     . . . . . . . . . . b 5 b . . . 
@@ -675,11 +664,4 @@ game.onUpdateInterval(1500, function () {
     projectile.top = 0
     projectile = sprites.createProjectileFromSide(bottomImage, -45, 0)
     projectile.bottom = scene.screenHeight()
-})
-forever(function () {
-    if (bgm == 1) {
-        music.play(music.stringPlayable("F G A F - F G A ", 300), music.PlaybackMode.UntilDone)
-        music.play(music.stringPlayable("E D E E F G A E ", 300), music.PlaybackMode.UntilDone)
-        music.play(music.stringPlayable("E F G D E F D E ", 300), music.PlaybackMode.UntilDone)
-    }
 })
