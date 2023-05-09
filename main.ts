@@ -42,6 +42,7 @@ let bgm = 0
 let mySprite: Sprite = null
 info.setLife(3)
 game.setGameOverMessage(false, "Out of lives :(")
+game.setGameOverPlayable(false, music.melodyPlayable(music.zapped), false)
 scene.setBackgroundColor(9)
 info.setScore(0)
 scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
